@@ -1,0 +1,8 @@
+
+User: lena, Phone: 89112003137, Visit time: 23-08-2018 15:00, Master: Pit Wallker
+User: Nik, Phone: 89112003137, Visit time: 22-08-2018 13:00, Master: Jessie Pinkman
+User: Nata, Phone: 233-44-76, Visit time: 12-09-2018 16:00, Master: Maria Kim
+User: Nata, Phone: 89112003137, Visit time: 22-08-2018 13:00, Master: Jessie Pinkman, Color: #fbd75b
+User: mike, Phone: 22-16-10, Visit time: 7-10-2018 11:00, Master: Maria Kim, Color: #7bd148
+User: Nata, Phone: 89112003137, Visit time: 18.12.2018 17:30, Master: Pit Wallker, Color: #7bd148
+User: Rita, Phone: 9337762212, Visit time: 22-08-2018 14:00, Master: Maria Kim, Color: #7bd148
