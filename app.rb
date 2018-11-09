@@ -1,14 +1,13 @@
 require 'rubygems'
 require 'sinatra'
 
-
 configure do
   enable :sessions
 end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
+    session[:identity] || 'Hello stranger'
   end
 end
 
@@ -57,16 +56,16 @@ end
 
 post '/visit'  do
   err_validate = {
-      :user_name => 'Укажите ваше имя',
-      :user_phone => 'Поле телефон должно быть заполнено',
-      :visit_time => 'Укажите время визита'
+    user_name: 'Укажите ваше имя',
+    user_phone: 'Поле телефон должно быть заполнено',
+    visit_time: 'Укажите время визита'
   }
   @user_name = params[:user_name]
   @user_phone = params[:user_phone]
   @visit_time = params[:visit_time]
   @colorpicker = params[:colorpicker]
   @master = params[:master]
-  err_validate.each do |key, val|
+  err_validate.each do |key, _val|
     if params[key] == ''
       @error = err_validate[key]
       return erb :visit
@@ -78,12 +77,13 @@ post '/visit'  do
   redirect to '/visit'
 end
 
-post '/contacts'  do
+post '/contacts' do
   @user_email = params[:user_email]
   @user_message = params[:user_message]
+  @error = 'Поле E-mail не может быть пустым' if @user_email == ''
+  @error = 'Сообщение  может быть пустым' if @user_message == ''
   f = File.open('public/contacts.txt', 'a')
   f.write("User E-mail: #{@user_email}, Message: #{@user_message}\n")
   f.close
-  where_user_came_from = session[:previous_url] || '/'
   redirect to '/contacts'
 end
