@@ -72,7 +72,8 @@ post '/visit'  do
     end
   end
   f = File.open('public/visits.txt', 'a')
-  f.write("User: #{@user_name}, Phone: #{@user_phone}, Visit time: #{@visit_time}, Master: #{@master}, Color: #{@colorpicker}\n")
+  f.write("User: #{@user_name}, Phone: #{@user_phone}, Visit time: #{@visit_time},
+ Master: #{@master}, Color: #{@colorpicker}\n")
   f.close
   redirect to '/visit'
 end
