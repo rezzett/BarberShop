@@ -11,9 +11,11 @@
   <div class="form-group">
     <label for="exampleFormControlSelect1">Выбирете мастера:</label>
     <select class="form-control" id="exampleFormControlSelect1" name="master">
-      <option>Pit Wallker</option>
-      <option>Jessie Pinkman</option>
-      <option>Maria Kim</option>
+      <option <%= @master == 'Pit Wallker' ? 'selected' : '' %>>Pit Wallker</option>
+      <option <%= @master == 'Jessie Pinkman' ? 'selected' : '' %>>Jessie Pinkman</option>
+      <option <%= @master == 'Maria Kim' ? 'selected' : '' %>>Maria Kim</option>
+      <option <%= @master == 'Jim boldon' ? 'selected' : '' %>>Jim boldon</option>
+      <option <%= @master == 'Shelly Kliford' ? 'selected' : '' %>>Shelly Kliford</option>
     </select>
   </div>
 
