@@ -80,8 +80,16 @@ end
 post '/contacts' do
   @user_email = params[:user_email]
   @user_message = params[:user_message]
-  @error = 'Поле E-mail не может быть пустым' if @user_email == ''
-  @error = 'Сообщение  может быть пустым' if @user_message == ''
+  contact_valid = {
+    user_email: 'Укажите ваш E-mail:',
+    user_message: 'Сообщение не может быть пустым'
+  }
+  contact_valid.each do |key, _val|
+    if params[key] == ''
+      @error = contact_valid[key]
+      return erb :contacts
+    end
+  end
   f = File.open('public/contacts.txt', 'a')
   f.write("User E-mail: #{@user_email}, Message: #{@user_message}\n")
   f.close
