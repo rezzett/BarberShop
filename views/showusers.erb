@@ -1,0 +1,25 @@
+<table class="table table-dark table-hover">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Visit date</th>
+    <th scope="col">Master</th>
+    <th scope="col">Color</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @results.each do |row| %>
+    <tr>
+      <th scope="row"><%= row['id'] %></th>
+      <td><%= row['name'] %></td>
+      <td><%= row['phone'] %></td>
+      <td><%= row['data_stamp'] %></td>
+      <td><%= row['master'] %></td>
+      <td><%= row['color'] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

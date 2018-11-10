@@ -1,5 +1,13 @@
 require 'rubygems'
 require 'sinatra'
+require 'sqlite3'
+
+# @return [Object]
+def obj_db
+  db = SQLite3::Database.new 'barber_shop.sqlite'
+  db.results_as_hash = true
+  db
+end
 
 configure do
   enable :sessions
@@ -54,7 +62,13 @@ get '/visit' do
   erb :visit
 end
 
-post '/visit'  do
+get '/showusers' do
+  db = obj_db
+  @results = db.execute 'SELECT * FROM `users` ORDER BY `id` DESC'
+  erb :showusers
+end
+
+post '/visit' do
   err_validate = {
     user_name: 'Укажите ваше имя',
     user_phone: 'Поле телефон должно быть заполнено',
@@ -71,10 +85,15 @@ post '/visit'  do
       return erb :visit
     end
   end
-  f = File.open('public/visits.txt', 'a')
-  f.write("User: #{@user_name}, Phone: #{@user_phone}, Visit time: #{@visit_time},
- Master: #{@master}, Color: #{@colorpicker}\n")
-  f.close
+
+  obj_db.execute('INSERT INTO users(name, phone, data_stamp, master, color)
+                  VALUES(?, ?, ?, ?, ?)',
+                 [@user_name, @user_phone, @visit_time, @master, @colorpicker])
+  # f = File.open('public/visits.txt', 'a')
+  # f.write("User: #{@user_name}, Phone: #{@user_phone}, Visit time:
+  # #{@visit_time},
+  # Master: #{@master}, Color: #{@colorpicker}\n")
+  # f.close
   redirect to '/visit'
 end
 
